@@ -17,3 +17,8 @@
 .is-complete {
   text-decoration: line-through;
 }
+
+.todo input{
+  border: none;
+  background: #f4f4f4;
+}

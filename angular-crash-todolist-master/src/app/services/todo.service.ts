@@ -36,6 +36,11 @@ export class TodoService {
     return this.http.post<Todo>(this.todosUrl+'addTodo', todo, httpOptions);
   }
 
+  // Edit existing todo
+  editTodo(todo:Todo):Observable<Todo> {
+    return this.http.put<Todo>(this.todosUrl+'editTodo', todo, httpOptions);
+  }
+
   // Toggle Completed
   toggleCompleted(todo: Todo):Observable<any> {
     const url = `${this.todosUrl}/${todo.id}`;

@@ -2,7 +2,6 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { TodoService } from '../../services/todo.service';
 import { NgModule } from '@angular/core';
 import { Todo } from 'src/app/models/Todo';
-import { TodoInputComponent } from '../todo-input/todo-input.component';
 
 @Component({
   selector: 'app-todo-item',
@@ -10,16 +9,17 @@ import { TodoInputComponent } from '../todo-input/todo-input.component';
   styleUrls: ['./todo-item.component.css']
 })
 @NgModule({
-  declarations: [TodoInputComponent],
   providers: []
 })
 export class TodoItemComponent implements OnInit {
   @Input() todo: Todo;
   @Output() deleteTodo: EventEmitter<Todo> = new EventEmitter();
+  @Output() editTodo: EventEmitter<Todo> = new EventEmitter();
 
   constructor(private todoService:TodoService) { }
 
   ngOnInit() {
+    this.todo.readonly = true;
   }
 
   // Set Dynamic Classes
@@ -32,15 +32,28 @@ export class TodoItemComponent implements OnInit {
     return classes;
   }
 
-  onToggle(todo) {
+  onToggle(todo:Todo) {
     // Toggle in UI
     todo.completed = !todo.completed;
     // Toggle on server
     this.todoService.toggleCompleted(todo).subscribe(todo => console.log(todo));
   }
 
-  onDelete(todo) {
+  onDelete(todo:Todo) {
     this.deleteTodo.emit(todo);
   }
 
+  onEdit(todo:Todo){
+   console.log('in onEdit');
+   this.todoService.addTodo(todo).subscribe();
+  }
+
+  onMakeInputEditable(todo:Todo){
+    console.log('in on editable');
+    return false;    
+   }
+
+   isReadOnly(){
+     return true;
+   }
 }

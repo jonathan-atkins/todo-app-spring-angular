@@ -42,10 +42,13 @@ public class TodoController {
         todoRepository.delete(todo);
     }
     
-    //more git testing
     @PutMapping("/toggleCompleted")
     void toggleCompleted(@RequestBody Todo todo) {
         todoRepository.save(todo);
     }
 
+    @PutMapping("/editTodo")
+    void editTodo(@RequestBody Todo todo) {
+        todoRepository.save(todo);
+    }
 }

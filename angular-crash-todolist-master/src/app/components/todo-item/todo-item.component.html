@@ -9,8 +9,15 @@
     <label for="{{ todo.id }}">
       {{ todo.title }}
     </label>
-    <input [placeholder]="todo.title" [name]="todo.title" [readonly]="false"/>
-    <app-todo-input></app-todo-input>
+    <input  
+      (focusout)="onEdit(todo)" 
+      (focus)="onMakeInputEditable(todo)"
+      type="text"
+      id="{{ todo.id }}"
+      [(ngModel)]="todo.title" 
+      [readonly]="todo.readonly"
+    />
+    <button (click)="todo.readonly = !todo.readonly">edit todo</button>
     <button (click)="onDelete(todo)" class="del">X</button>
   </p>
 </div>
