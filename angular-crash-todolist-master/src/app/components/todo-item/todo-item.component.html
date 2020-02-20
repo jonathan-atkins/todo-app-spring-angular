@@ -9,6 +9,8 @@
     <label for="{{ todo.id }}">
       {{ todo.title }}
     </label>
+    <input [placeholder]="todo.title" [name]="todo.title" [readonly]="false"/>
+    <app-todo-input></app-todo-input>
     <button (click)="onDelete(todo)" class="del">X</button>
   </p>
 </div>
