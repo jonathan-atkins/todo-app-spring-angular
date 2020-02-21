@@ -18,7 +18,11 @@
   text-decoration: line-through;
 }
 
-.todo input{
+.todo-input-field{
+ width:90%;
+}
+
+.todo input[readonly]{
   border: none;
   background: #f4f4f4;
 }

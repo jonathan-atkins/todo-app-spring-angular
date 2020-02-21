@@ -6,18 +6,18 @@
       id="{{ todo.id }}"
       [checked]="todo.completed"
     />
-    <label for="{{ todo.id }}">
-      {{ todo.title }}
-    </label>
+ 
     <input  
       (focusout)="onEdit(todo)" 
-      (focus)="onMakeInputEditable(todo)"
+      (focus)="onToggleReadOnly(todo)"
       type="text"
       id="{{ todo.id }}"
       [(ngModel)]="todo.title" 
       [readonly]="todo.readonly"
+      [ngClass]="setClasses()"
+      class="todo-input-field"
     />
-    <button (click)="todo.readonly = !todo.readonly">edit todo</button>
     <button (click)="onDelete(todo)" class="del">X</button>
   </p>
 </div>
+

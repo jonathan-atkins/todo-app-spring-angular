@@ -39,21 +39,18 @@ export class TodoItemComponent implements OnInit {
     this.todoService.toggleCompleted(todo).subscribe(todo => console.log(todo));
   }
 
+  onToggleReadOnly(todo:Todo){
+    todo.readonly = !todo.readonly;
+  }
+
   onDelete(todo:Todo) {
     this.deleteTodo.emit(todo);
   }
 
   onEdit(todo:Todo){
    console.log('in onEdit');
+   todo.readonly = true;
    this.todoService.addTodo(todo).subscribe();
   }
 
-  onMakeInputEditable(todo:Todo){
-    console.log('in on editable');
-    return false;    
-   }
-
-   isReadOnly(){
-     return true;
-   }
 }
